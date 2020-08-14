@@ -1,8 +1,8 @@
 {
-  "name": "data-structures",
+  "name": "algorithms",
   "version": "1.0.0",
-  "description": "JavaScript implementation of some data structures",
-  "main": "./src/data-structures.js",
+  "description": "JavaScript implementation of some programming problems",
+  "main": "./src/algorithms.js",
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watchAll --coverage"
