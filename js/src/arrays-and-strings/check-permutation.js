@@ -12,7 +12,7 @@ const countCharacters = (input) => {
     }
   }
   return charInfo;
-}
+};
 
 export const isPermutation = (input1, input2) => {
   if (typeof input1 !== 'string') {
@@ -29,4 +29,4 @@ export const isPermutation = (input1, input2) => {
     }
   }
   return true;
-}
+};
