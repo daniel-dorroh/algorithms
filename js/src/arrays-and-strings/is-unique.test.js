@@ -2,12 +2,12 @@ import { areAllCharactersUnique } from './is-unique';
 
 describe('areAllCharactersUnique', () => {
 
-  test.each([null, undefined, ''])('false for "%s" input', (input) => {
-    expect(areAllCharactersUnique(input)).toBe(false);
+  test.each([null, undefined, 123, {}, [], () => true])('throws for non-string input "%s"', (input) => {
+    expect(() => areAllCharactersUnique(input)).toThrow(`input is ${typeof input} but should be a string`);
   });
 
-  test.each([123, {}, [], () => true])('false for non-string input "%s"', (input) => {
-    expect(areAllCharactersUnique(input)).toBe(false);
+  test('false for empty string input', () => {
+    expect(areAllCharactersUnique('')).toBe(false);
   });
 
   test('true for unique input', () => {

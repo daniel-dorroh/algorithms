@@ -3,10 +3,10 @@
 // use additional data structures?
 
 export const areAllCharactersUnique = (input) => {
-  if (input === null
-      || input === undefined
-      || input.length === 0
-      || typeof input !== 'string') {
+  if (typeof input !== 'string') {
+    throw `input is ${typeof input} but should be a string`;
+  }
+  if (input.length === 0) {
     return false;
   }
   for (let i = 0; i < input.length; i++) {
