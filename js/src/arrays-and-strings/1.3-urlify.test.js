@@ -1,4 +1,4 @@
-import { cStyleUrlify, urlify } from './urlify';
+import { cStyleUrlify, urlify } from './1.3-urlify';
 
 describe('cStyleUrlify', () => {
 

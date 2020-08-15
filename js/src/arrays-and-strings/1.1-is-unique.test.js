@@ -1,4 +1,4 @@
-import { areAllCharactersUnique } from './is-unique';
+import { areAllCharactersUnique } from './1.1-is-unique';
 
 describe('areAllCharactersUnique', () => {
 

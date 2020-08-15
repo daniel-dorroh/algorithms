@@ -1,4 +1,4 @@
-import { isPermutation } from './check-permutation';
+import { isPermutation } from './1.2-check-permutation';
 
 describe('isPermutation', () => {
 
