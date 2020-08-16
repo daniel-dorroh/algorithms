@@ -21,7 +21,7 @@ const searchForInsertions = (longer, shorter, lIndex, sIndex, insertionCount) =>
     lIndex++;
   }
   return null;
-}
+};
 
 export const diffInputs = (longer, sameOrShorter) => {
   if (longer.length < sameOrShorter.length) {
