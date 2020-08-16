@@ -1,3 +1,5 @@
+import { throwIfNotType } from '../utility/arg-checking';
+
 // Given two strings, write a method
 // to decide if one is a permutation
 // of the other
@@ -15,12 +17,8 @@ const countCharacters = (input) => {
 };
 
 export const isPermutation = (input1, input2) => {
-  if (typeof input1 !== 'string') {
-    throw `input1 is '${typeof input1}' but it should be a string`;
-  }
-  if (typeof input2 !== 'string') {
-    throw `input2 is '${typeof input2}' but it should be a string`;
-  }
+  throwIfNotType(input1, 'string', 'input1');
+  throwIfNotType(input2, 'string', 'input2');
   const input1Info = countCharacters(input1);
   const input2Info = countCharacters(input2);
   for (let char in input1Info) {

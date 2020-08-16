@@ -1,6 +1,6 @@
 
-export const throwIfNotType = (input, type) => {
+export const throwIfNotType = (input, type, name = 'input') => {
   if (typeof input !== type) {
-    throw `input is ${typeof input} but should be a ${type}`;
+    throw `${name} is ${typeof input} but should be a ${type}`;
   }
 };

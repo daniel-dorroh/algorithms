@@ -20,6 +20,10 @@ describe('cStyleUrlify', () => {
 
 describe('urlify', () => {
 
+  test.each([123, [], {}, () => true])('throws if input is not a string', (input) => {
+    expect(() => urlify(input)).toThrow();
+  });
+
   test('returns empty string for empty string', () => {
     expect(urlify('')).toBe('');
   });

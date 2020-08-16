@@ -1,10 +1,12 @@
+import { throwIfNotType } from '../utility/arg-checking';
+
 // Given a string, write a function to check
 // if it is a permutation of a palindrome.
 // A palindrome is a word or phrase that is the
 // same forwards and backwards. A permutation is
 // a rearrangement of letters. The palindrome does
 // not need to be limited to just dictionary words.
-
+//
 // Example
 //  Input: 'Tact Coa'
 //  Output: true
@@ -18,6 +20,7 @@
 const isOdd = (input) => (input % 2) !== 0;
 
 export const hasPalindromePermutation = (input) => {
+  throwIfNotType(input, 'string');
   const charCountInfo = {};
   let oddCharGroupCount = 0;
   for (let char of input) {

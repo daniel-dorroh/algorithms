@@ -2,6 +2,10 @@ import { hasPalindromePermutation } from './1.4-palindrome-permutation';
 
 describe('hasPalindromePermutation', () => {
 
+  test.each([123, [], {}, () => true])('throws if input is not a string', (input) => {
+    expect(() => hasPalindromePermutation(input)).toThrow();
+  });
+
   test.each([
         '1234567',
         'abcdefg',

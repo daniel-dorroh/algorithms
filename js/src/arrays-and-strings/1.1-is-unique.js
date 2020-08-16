@@ -1,11 +1,11 @@
+import { throwIfNotType } from '../utility/arg-checking';
+
 // Implement an algorithm to determine if a string
 // has all unique characters. What if you cannot
 // use additional data structures?
 
 export const areAllCharactersUnique = (input) => {
-  if (typeof input !== 'string') {
-    throw `input is ${typeof input} but should be a string`;
-  }
+  throwIfNotType(input, 'string');
   if (input.length === 0) {
     return false;
   }

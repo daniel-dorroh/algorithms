@@ -1,3 +1,5 @@
+import { throwIfNotType } from '../utility/arg-checking';
+
 // Write a method to replace all spaces in a
 // string with '%20'. You may assume that the
 // string has sufficient space at the end to
@@ -48,6 +50,7 @@ export const cStyleUrlify = (charArray, length) => {
 
 // A non-c-like implementation
 export const urlify = (input) => {
+  throwIfNotType(input, 'string');
   const urlifiedStringParts = [];
   let writePosition = input.length - 1;
   let readPosition =

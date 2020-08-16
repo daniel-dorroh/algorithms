@@ -3,7 +3,7 @@ import { areAllCharactersUnique } from './1.1-is-unique';
 describe('areAllCharactersUnique', () => {
 
   test.each([null, undefined, 123, {}, [], () => true])('throws for non-string input "%s"', (input) => {
-    expect(() => areAllCharactersUnique(input)).toThrow(`input is ${typeof input} but should be a string`);
+    expect(() => areAllCharactersUnique(input)).toThrow();
   });
 
   test('false for empty string input', () => {

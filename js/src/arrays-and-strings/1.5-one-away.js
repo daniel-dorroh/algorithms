@@ -1,3 +1,5 @@
+import { throwIfNotType } from '../utility/arg-checking';
+
 // There are three types of edits that can be performed
 // on strings: insert a character, remove a character,
 // or replace a character. Given two strings, write a
@@ -53,6 +55,8 @@ export const diffInputs = (longer, sameOrShorter) => {
 };
 
 export const areWithinOneEditDifference = (input1, input2) => {
+  throwIfNotType(input1, 'string', 'input1');
+  throwIfNotType(input2, 'string', 'input2');
   if (input1 === input2) {
     return true;
   }

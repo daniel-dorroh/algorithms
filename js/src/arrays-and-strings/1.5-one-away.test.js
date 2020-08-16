@@ -33,6 +33,16 @@ describe('diffInputs', () => {
 
 describe('areWithinOneEditDifference', () => {
 
+  const nonStringInputs = [null, undefined, [], {}, () => true, 123];
+
+  test.each(nonStringInputs)('throws if input1 is not a string', (input1) => {
+    expect(() => areWithinOneEditDifference(input1, 'a string')).toThrow(`input1 is ${typeof input1} but should be a string`);
+  });
+
+  test.each(nonStringInputs)('throws if input2 is not a string', (input2) => {
+    expect(() => areWithinOneEditDifference('a string', input2)).toThrow(`input2 is ${typeof input2} but should be a string`);
+  });
+
   test('true if both inputs are the same', () => {
     expect(areWithinOneEditDifference('twenty-five', 'twenty-five')).toBe(true);
   });
