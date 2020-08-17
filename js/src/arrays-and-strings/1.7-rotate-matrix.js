@@ -50,7 +50,7 @@ export const inPlaceRotateImage = (image) => {
   if (length === 1) {
     return image;
   }
-  // First, rotate on the left->right, bottom->top diagonal
+  // First, flip across the left->right, bottom->top diagonal
   for (let i = 0, k = length; i < length; k--, i++) {
     for (let j = 0; j < k; j++) {
       const temp = image[i][j];
@@ -60,7 +60,7 @@ export const inPlaceRotateImage = (image) => {
       image[rotatedI][rotatedJ] = temp;
     }
   }
-  // Second, rotate on horizontal
+  // Second, flip across horizontal
   for (let i = 0; i < Math.floor(length / 2); i++) {
     for (let j = 0; j < length; j++) {
       const rotatedI = length - i - 1;
