@@ -15,7 +15,7 @@ const isSubstring = (s1, s2) => {
 
 // Reason this works:
 // s1:    |123456|
-// s2+s2: |----12|23456--|
+// s2+s2: |----12|3456--|
 // if s1 is a substring of s2+s2,
 // and s1 and s2 are the same length,
 // s2 must be a rotation of s1.
