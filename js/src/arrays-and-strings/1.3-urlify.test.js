@@ -2,6 +2,10 @@ import { cStyleUrlify, urlify } from './1.3-urlify';
 
 describe('cStyleUrlify', () => {
 
+  test.each([123, 'twenty-five', {}, () => true])('throws if input is not an array', (input) => {
+    expect(() => cStyleUrlify(input, 0)).toThrow();
+  });
+
   test('returns char array string for empty char array', () => {
     expect(cStyleUrlify([], 0)).toStrictEqual([]);
   });

@@ -1,3 +1,5 @@
+import { throwIfNotArray } from '../utility/arg-checking';
+
 // Given an image represented by an
 // NxN matrix, where each pixel in
 // the image is 4 bytes, write a method
@@ -13,9 +15,7 @@ const createEmptySquareMatrix = (length) => {
 };
 
 export const rotateImage = (image) => {
-  if (!Array.isArray(image)) {
-    throw 'image is not an array';
-  }
+  throwIfNotArray(image, 'image');
   const length = image.length;
   if (length === 0) {
     return image;
@@ -36,10 +36,19 @@ export const rotateImage = (image) => {
   return rotatedImage;
 };
 
+// When I was trying to figure this one out,
+// the thing that led me to the solution was
+// noticing that the only way to do the rotation
+// in-place would be to flip the positions of
+// elements. Otherwise, there would always need
+// to be an external structure holding information
+// while operations are performed. Given that
+// insight, there weren't too many geometries
+// that offered the symmetry required to do the
+// flipping, and these two flips just happened
+// to solve the problem.
 export const inPlaceRotateImage = (image) => {
-  if (!Array.isArray(image)) {
-    throw 'image is not an array';
-  }
+  throwIfNotArray(image, 'image');
   const length = image.length;
   if (length === 0) {
     return image;

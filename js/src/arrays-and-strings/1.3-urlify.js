@@ -1,4 +1,4 @@
-import { throwIfNotType } from '../utility/arg-checking';
+import { throwIfNotType, throwIfNotArray } from '../utility/arg-checking';
 
 // Write a method to replace all spaces in a
 // string with '%20'. You may assume that the
@@ -22,6 +22,7 @@ const indexOfLastNonWhiteSpaceCharacter = (input, length) => {
 // immutable in JavaScript, I'm using arrays for
 // a 'c-like' solution.
 export const cStyleUrlify = (charArray, length) => {
+  throwIfNotArray(charArray);
   let writePosition = length - 1;
   let readPosition =
       indexOfLastNonWhiteSpaceCharacter(charArray, length);
