@@ -21,6 +21,6 @@
     "jest": "^26.1.0"
   },
   "dependencies": {
-    "@dinosanjo/data-structures": "^1.0.1"
+    "@dinosanjo/data-structures": "^1.0.2"
   }
 }
