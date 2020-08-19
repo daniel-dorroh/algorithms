@@ -16,7 +16,6 @@ describe('removeDuplicates', () => {
     list.pushBack(85);
     list.pushBack(25);
     list.pushBack(5);
-    debugger;
     removeDuplicates(list);
     expect(Array.from(list).map(item => item.value)).toStrictEqual([15, 25, 35, 55, 5, 65, 85]);
   });
