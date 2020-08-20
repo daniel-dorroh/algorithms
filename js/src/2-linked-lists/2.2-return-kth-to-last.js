@@ -1,13 +1,11 @@
 import { SingleList } from '@dinosanjo/data-structures';
-import { throwIfNotType } from '../utility/arg-checking';
+import { throwIfNotType, throwIfNotList } from '../utility/arg-checking';
 
 // Implement an algorithm to find the kth
 // to last element of a singly linked list.
 
 export const getKthToLast = (list, k) => {
-  if (!(list instanceof SingleList )) {
-    throw 'list is not a SingleList';
-  }
+  throwIfNotList(list);
   throwIfNotType(k, 'number', 'k');
   if (!Number.isInteger(k)) {
     throw 'k is not an integer';

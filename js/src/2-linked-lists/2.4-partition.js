@@ -1,5 +1,5 @@
 import { SingleList } from '@dinosanjo/data-structures';
-import { throwIfNotType } from '../utility/arg-checking';
+import { throwIfNotType, throwIfNotList } from '../utility/arg-checking';
 
 // Write code to partition a linked
 // list around a value x, such that
@@ -17,9 +17,7 @@ import { throwIfNotType } from '../utility/arg-checking';
 //  Output: 3 -> 1 -> 2 ->10 -> 5 -> 5 -> 8
 
 export const partition = (list, x) => {
-  if (!(list instanceof SingleList )) {
-    throw 'list is not a SingleList';
-  }
+  throwIfNotList(list);
   throwIfNotType(x, 'number', 'x');
   let firstSectionEndId = null;
   let isPartitionFound = false;

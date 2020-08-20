@@ -12,8 +12,8 @@ export const throwIfNotArray = (input, name = 'input') => {
   }
 };
 
-export const throwIfNotList = (input, name = 'input') => {
-  if (!(input instanceof SingleList)) {
+export const throwIfNotList = (list, name = 'list') => {
+  if (!(list instanceof SingleList)) {
     throw `${name} is not a SingleList`;
   }
 }

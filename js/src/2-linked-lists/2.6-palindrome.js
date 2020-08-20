@@ -1,13 +1,12 @@
 import { SingleList } from '@dinosanjo/data-structures';
+import { throwIfNotList } from '../utility/arg-checking';
 
 // Implement a function to check if a linked list is a palindrome.
 
 const isOdd = (input) => (input % 2) !== 0;
 
 export const isPalindrome = (list) => {
-  if (!(list instanceof SingleList)) {
-    throw 'list is not a SingleList';
-  }
+  throwIfNotList(list);
   const incidenceInfo = {};
   let oddIncidenceCount = 0;
   for (const {value} of list) {

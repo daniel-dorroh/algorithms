@@ -1,4 +1,5 @@
 import { SingleList } from '@dinosanjo/data-structures';
+import { throwIfNotList } from '../utility/arg-checking';
 
 // You have two numbers represented by
 // a linked list, where each node contains
@@ -11,12 +12,8 @@ import { SingleList } from '@dinosanjo/data-structures';
 // are stored in forward order.
 
 export const sum = (x, y) => {
-  if (!(x instanceof SingleList)) {
-    throw 'x is not a SingleList';
-  }
-  if (!(y instanceof SingleList)) {
-    throw 'y is not a SingleList';
-  }
+  throwIfNotList(x, 'x');
+  throwIfNotList(y, 'y');
   const xIterator = x.getIterator();
   const yIterator = y.getIterator();
   let carry = 0;
@@ -60,12 +57,8 @@ const padShorter = (x, y) => {
 }
 
 export const reverseSum = (x, y) => {
-  if (!(x instanceof SingleList)) {
-    throw 'x is not a SingleList';
-  }
-  if (!(y instanceof SingleList)) {
-    throw 'y is not a SingleList';
-  }
+  throwIfNotList(x, 'x');
+  throwIfNotList(y, 'y');
   padShorter(x, y);
   const xIterator = x.getIterator();
   const yIterator = y.getIterator();
