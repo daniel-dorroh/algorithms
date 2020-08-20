@@ -1,4 +1,3 @@
-import { SingleList } from '@dinosanjo/data-structures';
 import { throwIfNotType, throwIfNotList } from '../utility/arg-checking';
 
 // Implement an algorithm to find the kth

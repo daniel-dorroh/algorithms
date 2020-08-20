@@ -1,4 +1,3 @@
-import { SingleList } from '@dinosanjo/data-structures';
 import { throwIfNotType, throwIfNotList } from '../utility/arg-checking';
 
 // Write code to partition a linked

@@ -1,4 +1,3 @@
-import { SingleList } from '@dinosanjo/data-structures';
 import { throwIfNotList } from '../utility/arg-checking';
 
 // Implement a function to check if a linked list is a palindrome.

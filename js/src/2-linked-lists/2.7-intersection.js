@@ -1,4 +1,3 @@
-import { SingleList } from '@dinosanjo/data-structures';
 import { throwIfNotList } from '../utility/arg-checking';
 
 // Given two singly linked lists, determine
