@@ -9,52 +9,27 @@ export class MinStack extends Stack {
 
   constructor() {
     super();
-    this.minValues_ = new Heap(HEAP_TYPES.MINIMUM);
-    this.valuesCache_ = new Map();
+    this.minValues_ = new Stack();
   }
 
   min() {
-    while (true) {
-      const min = this.minValues_.peek();
-      if (min === undefined || this.valueExists_(min)) {
-        return min;
-      }
-      this.minValues_.pop();
-    }
+    return this.minValues_.peek();
   }
 
   push(value) {
-    this.minValues_.push(value);
-    this.cache_(value);
+    if (this.minValues_.isEmpty()
+        || value <= this.minValues_.peek()) {
+      this.minValues_.push(value);
+    }
     super.push(value);
   }
 
   pop() {
     const value = super.pop();
-    this.decache_(value);
+    if (value === this.minValues_.peek()) {
+      this.minValues_.pop();
+    }
     return value;
-  }
-
-  cache_(value) {
-    let cache = this.valuesCache_[value];
-    if (cache === undefined) {
-      cache = [value];
-    } else {
-      cache.push(value);
-    }
-    this.valuesCache_[value] = cache;
-  }
-
-  decache_(value) {
-    const cache = this.valuesCache_[value];
-    cache.pop();
-    if (cache.length === 0) {
-      this.valuesCache_[value] = undefined;
-    }
-  }
-
-  valueExists_(value) {
-    return this.valuesCache_[value] !== undefined;
   }
 
 }
