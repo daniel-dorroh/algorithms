@@ -4,7 +4,7 @@ import { Stack } from '@dinosanjo/data-structures';
 
 class RWStack extends Stack {
 
-  constructor(isReading = true) {
+  constructor(isReading) {
     super();
     this.isReading_ = isReading;
     this.disorder_ = 0;

@@ -29,6 +29,17 @@ describe('pop', () => {
     expect(stack.minValues_.peek()).toBeNull();
   });
 
+  test('removes a value without popping the min', () => {
+    const min = 25;
+    const stack = new MinStack();
+    stack.push(35);
+    stack.push(min);
+    stack.push(45);
+    stack.push(55);
+    stack.pop();
+    expect(stack.min()).toBe(min);
+  });
+
 });
 
 describe('min', () => {
