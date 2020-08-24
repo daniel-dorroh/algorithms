@@ -16,4 +16,10 @@ export const throwIfNotList = (list, name = 'list') => {
   if (!(list instanceof SingleList)) {
     throw `${name} is not a SingleList`;
   }
-}
+};
+
+export const throwIfNullOrUndefined = (input, name = 'input') => {
+  if (input === undefined || input === null) {
+    throw `${name} is ${input}`;
+  }
+};
