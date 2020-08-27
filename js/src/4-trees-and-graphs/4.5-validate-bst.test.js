@@ -61,4 +61,36 @@ describe('isBinarySearchTree', () => {
     expect(isBinarySearchTree(root)).toBe(false);
   });
 
+  test('false for binary tree with left subtree containing value greater than root', () => {
+    const root = new Node(5);
+    const n1 = new Node(2);
+    const n2 = new Node(7);
+    const l1 = new Node(1);
+    const n3 = new Node(3);
+    const l2 = new Node(6);
+    root.addLeft(n1);
+    root.addRight(n2);
+    n1.addLeft(l1);
+    n1.addRight(n3);
+    n3.addRight(l2);
+    expect(isBinarySearchTree(root)).toBe(false);
+  });
+
+  test('false for binary tree with right subtree containing value less than root', () => {
+    const root = new Node(5);
+    const n1 = new Node(2);
+    const n2 = new Node(7);
+    const l1 = new Node(6);
+    const n3 = new Node(9);
+    const l2 = new Node(4);
+    const l3 = new Node(10);
+    root.addLeft(n1);
+    root.addRight(n2);
+    n2.addLeft(l1);
+    n2.addRight(n3);
+    n3.addLeft(l2);
+    n3.addRight(l3);
+    expect(isBinarySearchTree(root)).toBe(false);
+  });
+
 });
