@@ -16,11 +16,11 @@ export class Node {
   }
 
   left() {
-    return this.children_.length >= 1 ? this.children_[0] : null;
+    return this.children_[0] !== undefined ? this.children_[0] : null;
   }
 
   right() {
-    return this.children_.length === 2 ? this.children_[1] : null;
+    return this.children_[1] !== undefined ? this.children_[1] : null;
   }
 
   addLeft(value) {
