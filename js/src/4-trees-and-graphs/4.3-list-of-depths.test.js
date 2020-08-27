@@ -1,10 +1,15 @@
-import { Node, toBinarySearchTree } from './4.2-minimal-tree';
+import { Node } from './shared';
+import { toBinarySearchTree } from './4.2-minimal-tree';
 import { getNodesByDepth } from './4.3-list-of-depths';
 
 describe('getNodesByDepth', () => {
 
   test.each([null, undefined])('returns empty list for null or undefined root', (root) => {
     expect(getNodesByDepth(root)).toStrictEqual([]);
+  });
+
+  test.each([123, "25", {}, [], () => true])('throws if root is not a Node', (root) => {
+    expect(() => getNodesByDepth(root)).toThrow('root is not a Node');
   });
 
   test('returns list of one list containing node for single node tree', () => {

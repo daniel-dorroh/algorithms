@@ -1,5 +1,6 @@
 import { Node } from './4.2-minimal-tree';
 import { Queue } from '@dinosanjo/data-structures';
+import { throwIfNotNode } from './shared';
 
 // Implement a function to check if a binary tree
 // is balanced. For the purposes of this question,
@@ -8,9 +9,7 @@ import { Queue } from '@dinosanjo/data-structures';
 // node never differ by more than one.
 
 export const isBalanced = (root) => {
-  if (!(root instanceof Node)) {
-    throw 'root is not a Node';
-  }
+  throwIfNotNode(root, 'root');
   const uncheckedNodes = new Queue();
   uncheckedNodes.enqueue(root);
   while (uncheckedNodes.size() !== 0) {

@@ -1,5 +1,6 @@
+import { Node } from './shared';
 import { isBalanced } from './4.4-check-balanced';
-import { toBinarySearchTree, Node } from './4.2-minimal-tree';
+import { toBinarySearchTree } from './4.2-minimal-tree';
 
 describe('isBalanced', () => {
 

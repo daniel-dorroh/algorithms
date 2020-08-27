@@ -1,3 +1,4 @@
+import { throwIfNotNode } from './shared';
 
 // Given a binary tree, design an algorithm
 // that creates linked lists of all the
@@ -27,6 +28,7 @@ export const getNodesByDepth = (root) => {
   if (root === null || root === undefined) {
     return nodes;
   }
+  throwIfNotNode(root, 'root');
   processDepth(nodes, [root], 0);
   return nodes;
 };
