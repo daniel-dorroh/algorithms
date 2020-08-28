@@ -1,9 +1,23 @@
 
 export class Node {
 
-  constructor(value) {
+  constructor(value, parent = null) {
     this.value_ = value;
-    this.children_ = [];
+    this.children_ = [null, null];
+    this.childCount_ = 0;
+    this.parent_ = parent;
+  }
+
+  childCount() {
+    return this.childCount_;
+  }
+
+  children() {
+    return [this.left(), this.right()].filter(c => c !== null);
+  }
+
+  parent() {
+    return this.parent_;
   }
 
   value() {
@@ -11,19 +25,21 @@ export class Node {
   }
 
   left() {
-    return this.children_[0] !== undefined ? this.children_[0] : null;
+    return this.children_[0];
   }
 
   right() {
-    return this.children_[1] !== undefined ? this.children_[1] : null;
+    return this.children_[1];
   }
 
   addLeft(value) {
     this.children_[0] = value;
+    this.childCount_++;
   }
 
   addRight(value) {
     this.children_[1] = value;
+    this.childCount_++;
   }
 
 }

@@ -1,4 +1,3 @@
-import { Node } from './4.2-minimal-tree';
 import { Queue } from '@dinosanjo/data-structures';
 import { throwIfNotNode } from './shared';
 
@@ -19,11 +18,11 @@ export const isBalanced = (root) => {
       uncheckedNodes.enqueue(node.right());
       continue;
     } else if (node.left() !== null) {
-      if (node.left().children_.length !== 0) {
+      if (node.left().childCount() !== 0) {
         return false;
       }
     } else if (node.right() !== null) {
-      if (node.right().children_.length !== 0) {
+      if (node.right().childCount() !== 0) {
         return false;
       }
     }
