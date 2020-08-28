@@ -1,37 +1,23 @@
 import { throwIfNotNode } from './shared';
-import { Queue } from '@dinosanjo/data-structures';
 
 // Implement a function to check if a
 // binary tree is a binary search tree.
 
-const satisfiesBSTCondition = (node) => {
-  const leftChild = node.left();
-  const rightChild = node.right();
-  if (node.childCount() === 1) {
-    return (leftChild !== null && leftChild.value() <= node.value())
-        || (rightChild !== null && rightChild.value() >= node.value());
+const isWithinRange = (node, min, max) => {
+  if (node === null) {
+    return true;
   }
-  if (node.childCount() === 2) {
-    return leftChild !== null
-        && leftChild.value() <= node.value()
-        && rightChild !== null
-        && rightChild.value() >= node.value();
-  }
-  return true;
-}
+  const value = node.value();
+  const left = node.left();
+  const right = node.right();
+  return value >= min
+      && value <= max
+      && isWithinRange(left, min, value)
+      && isWithinRange(right, value, max);
+};
 
 export const isBinarySearchTree = (root) => {
   throwIfNotNode(root);
-  const unprocessedNodes = new Queue();
-  unprocessedNodes.enqueue(root);
-  while (unprocessedNodes.size() !== 0) {
-    const node = unprocessedNodes.dequeue();
-    if (!satisfiesBSTCondition(node)) {
-      return false;
-    }
-    for (const child of node.children()) {
-      unprocessedNodes.enqueue(child);
-    }
-  }
-  return true;
+  return isWithinRange(root.left(), Number.NEGATIVE_INFINITY, root.value())
+      && isWithinRange(root.right(), root.value(), Number.POSITIVE_INFINITY);
 }
