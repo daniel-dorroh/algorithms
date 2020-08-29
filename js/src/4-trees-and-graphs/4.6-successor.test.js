@@ -64,7 +64,6 @@ describe('next', () => {
       ])('returns the next node given starting point', (start, end) => {
     const startNode = valueMapping[start];
     const nextNode = valueMapping[end];
-    debugger;
     expect(next(startNode)).toBe(nextNode);
   });
 
