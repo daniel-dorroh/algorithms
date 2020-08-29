@@ -14,24 +14,24 @@ import { throwIfNotArray } from '../utility/arg-checking';
 // dependents
 const findBaseProjects = (projects, dependencies) => {
   const dependencyProjects = dependencies
-      .map(([dp]) => dp)
-      .filter((dp, i, dps) => dps.indexOf(dp) === i);
+      .map(([dy, _]) => dy)
+      .filter((dy, i, dys) => dys.indexOf(dy) === i);
   const baseProjects = projects.filter(p => !dependencyProjects.includes(p));
   return baseProjects;
 };
 
 const throwIfCircularDependenciesDetected = (dependencies) => {
-  for (const [dependency, dependent] of dependencies) {
-    const searchQueue = new Queue();
-    searchQueue.enqueue(dependency);
-    while (searchQueue.size() !== 0) {
-      const searchDependent = searchQueue.dequeue();
-      const searchDependentDependencies = dependencies.filter(([_, sdt]) => searchDependent === sdt);
-      for (const [sdy, _] of searchDependentDependencies) {
-        if (dependent === sdy) {
+  for (const [dependency, project] of dependencies) {
+    const unprocessedDependencies = new Queue();
+    unprocessedDependencies.enqueue(dependency);
+    while (unprocessedDependencies.size() !== 0) {
+      const dependent = unprocessedDependencies.dequeue();
+      const dependentDependencies = dependencies.filter(([_, dt]) => dependent === dt);
+      for (const [dy, _] of dependentDependencies) {
+        if (project === dy) {
           throw 'Circular depdency found';
         }
-        searchQueue.enqueue(sdy);
+        unprocessedDependencies.enqueue(dy);
       }
     }
   }
@@ -39,8 +39,8 @@ const throwIfCircularDependenciesDetected = (dependencies) => {
 
 const getDependencyProjects = (project, dependencies) => {
   return dependencies
-      .filter(([_, dependent]) => project === dependent)
-      .map(([dependency, _]) => dependency);
+      .filter(([_, dt]) => project === dt)
+      .map(([dy, _]) => dy);
 };
 
 const insertBefore = (array, referenceValue, value) => {
