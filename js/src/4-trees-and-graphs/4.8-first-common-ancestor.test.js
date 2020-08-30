@@ -4,6 +4,7 @@ import { Node } from './shared';
 describe('findFirstCommonAncestor', () => {
 
   let r, a, x, y;
+  const nonNodes = [123, "25", {}, [], () => true];
 
   beforeEach(() => {
     r = new Node('root');
@@ -12,11 +13,23 @@ describe('findFirstCommonAncestor', () => {
     y = new Node('y');
   });
 
-  // Equilateral relationship
+  test.each(nonNodes)('throws if root is not a Node', (root) => {
+    expect(() => findFirstCommonAncestor(root, x, y)).toThrow();
+  });
+
+  test.each(nonNodes)('throws if node1 is not a Node', (node1) => {
+    expect(() => findFirstCommonAncestor(r, node1, y)).toThrow();
+  });
+
+  test.each(nonNodes)('throws if node2 is not a Node', (node2) => {
+    expect(() => findFirstCommonAncestor(r, x, node2)).toThrow();
+  });
+
+  // Parent relationship
   //     r
   //   a
   // x   y
-  test('returns correct ancestor for equilateral relationship', () => {
+  test('returns correct ancestor for parent relationship', () => {
     r.addLeft(a);
     a.addLeft(x);
     a.addRight(y);
@@ -24,16 +37,19 @@ describe('findFirstCommonAncestor', () => {
   });
 
   // Distant relative relationship
-  //      r
-  //    a
-  //  x   n
+  //        r
+  //      a
+  //    n1
+  //  x   n2
   //        y
   test('returns correct ancestor for distant relative relationship', () => {
-    const n = new Node('n');
+    const n1 = new Node('n1');
+    const n2 = new Node('n2');
     r.addLeft(a);
-    a.addLeft(x);
-    a.addRight(n);
-    n.addRight(y);
+    a.addLeft(n1);
+    n1.addLeft(x);
+    n1.addRight(n2);
+    n2.addRight(y);
     expect(findFirstCommonAncestor(r, x, y)).toBe(a);
   });
 
