@@ -11,22 +11,22 @@ const search = (node, searchedNodes) => {
   }
   let findCount = 0;
   let result = search(node.left(), searchedNodes);
-  if (!Number.isInteger(result)) {
-    return result;
-  } else {
+  if (Number.isInteger(result)) {
     findCount += result;
-  }
-  if (findCount === searchedNodes.length) {
-    return node;
+    if (findCount === searchedNodes.length) {
+      return node;
+    }
+  } else {
+    return result;
   }
   result = search(node.right(), searchedNodes);
-  if (!Number.isInteger(result)) {
-    return result;
-  } else {
+  if (Number.isInteger(result)) {
     findCount += result;
-  }
-  if (findCount === searchedNodes.length) {
-    return node;
+    if (findCount === searchedNodes.length) {
+      return node;
+    }
+  } else {
+    return result;
   }
   if (searchedNodes.includes(node)) {
     return findCount + 1;
