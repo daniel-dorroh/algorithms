@@ -1,4 +1,4 @@
-import { Node } from './shared';
+import { Node } from './node';
 import { toBinarySearchTree } from './4.2-minimal-tree';
 import { getNodesByDepth } from './4.3-list-of-depths';
 

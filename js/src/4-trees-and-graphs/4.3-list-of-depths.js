@@ -1,4 +1,4 @@
-import { throwIfNotNode } from './shared';
+import { throwIfNotNode } from './node';
 
 // Given a binary tree, design an algorithm
 // that creates linked lists of all the

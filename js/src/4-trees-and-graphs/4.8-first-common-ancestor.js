@@ -5,7 +5,7 @@
 // in a data structure. Note that this is not
 // necessarily a binary search tree.
 
-import { throwIfNotNode } from './shared';
+import { throwIfNotNode } from './node';
 
 const createResult = (count, ancestor = null) => {
   return {

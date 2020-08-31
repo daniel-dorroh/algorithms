@@ -1,4 +1,4 @@
-import { Node } from './shared';
+import { Node } from './node';
 import { isBalanced } from './4.4-check-balanced';
 import { toBinarySearchTree } from './4.2-minimal-tree';
 

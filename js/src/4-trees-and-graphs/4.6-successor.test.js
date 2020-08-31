@@ -1,5 +1,5 @@
 import { next } from './4.6-successor';
-import { Node } from './shared';
+import { Node } from './node';
 
 describe('next', () => {
 

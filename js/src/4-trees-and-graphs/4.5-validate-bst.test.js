@@ -1,4 +1,4 @@
-import { Node } from './shared';
+import { Node } from './node';
 import { toBinarySearchTree } from './4.2-minimal-tree';
 import { isBinarySearchTree } from './4.5-validate-bst';
 

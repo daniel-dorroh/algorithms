@@ -1,5 +1,5 @@
 import { findFirstCommonAncestor } from './4.8-first-common-ancestor';
-import { Node } from './shared';
+import { Node } from './node';
 
 describe('findFirstCommonAncestor', () => {
 

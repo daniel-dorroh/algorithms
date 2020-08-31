@@ -1,5 +1,5 @@
 import { Queue } from '@dinosanjo/data-structures';
-import { throwIfNotNode } from './shared';
+import { throwIfNotNode } from './node';
 
 // Implement a function to check if a binary tree
 // is balanced. For the purposes of this question,

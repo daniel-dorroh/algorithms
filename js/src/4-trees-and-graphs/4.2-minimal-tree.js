@@ -1,5 +1,5 @@
 import { throwIfNotArray } from '../utility/arg-checking';
-import { Node } from './shared';
+import { Node } from './node';
 
 // Given a sorted ascending array with unique
 // integer elements, write an algorithm to

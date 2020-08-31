@@ -1,4 +1,4 @@
-import { throwIfNotNode } from './shared';
+import { throwIfNotNode } from './node';
 
 // Write an algorithm to find the next node
 // of a given node in a binary search tree.
