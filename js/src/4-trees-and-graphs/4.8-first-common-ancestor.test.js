@@ -39,17 +39,20 @@ describe('findFirstCommonAncestor', () => {
   // Distant relative relationship
   //        r
   //      a
-  //    n1
-  //  x   n2
-  //        y
+  //    n1 n2
+  //  x      n3
+  //           y
   test('returns correct ancestor for distant relative relationship', () => {
     const n1 = new Node('n1');
     const n2 = new Node('n2');
+    const n3 = new Node('n3');
     r.addLeft(a);
     a.addLeft(n1);
+    a.addRight(n2);
     n1.addLeft(x);
-    n1.addRight(n2);
-    n2.addRight(y);
+    n2.addRight(n3);
+    n3.addRight(y);
+    debugger;
     expect(findFirstCommonAncestor(r, x, y)).toBe(a);
   });
 
@@ -66,14 +69,24 @@ describe('findFirstCommonAncestor', () => {
   });
 
   // Right side parent-grandparent relationship
-  // r
-  //   a
-  //     x
-  //       y
+  //   r
+  //     a
+  //   n1  x
+  // n2 n3   y
+  //   n4
   test('returns correct ancestor for distant relative relationship', () => {
+    const n1 = new Node('n1');
+    const n2 = new Node('n2');
+    const n3 = new Node('n3');
+    const n4 = new Node('n4');
     r.addRight(a);
+    a.addLeft(n1);
     a.addRight(x);
     x.addRight(y);
+    n1.addLeft(n2);
+    n1.addRight(n3);
+    n3.addLeft(n4);
+    debugger;
     expect(findFirstCommonAncestor(r, x, y)).toBe(a);
   });
 
