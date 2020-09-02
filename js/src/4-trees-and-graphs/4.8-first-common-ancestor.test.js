@@ -52,7 +52,6 @@ describe('findFirstCommonAncestor', () => {
     n1.addLeft(x);
     n2.addRight(n3);
     n3.addRight(y);
-    debugger;
     expect(findFirstCommonAncestor(r, x, y)).toBe(a);
   });
 
@@ -86,7 +85,6 @@ describe('findFirstCommonAncestor', () => {
     n1.addLeft(n2);
     n1.addRight(n3);
     n3.addLeft(n4);
-    debugger;
     expect(findFirstCommonAncestor(r, x, y)).toBe(a);
   });
 
