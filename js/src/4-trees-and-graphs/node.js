@@ -32,14 +32,32 @@ export class Node {
     return this.children_[1];
   }
 
+  changeParent(parent) {
+    if (parent !== null
+        && parent !== undefined
+        && parent !== this.parent()) {
+      this.parent_ = parent;
+    }
+  }
+
   addLeft(value) {
+    value.changeParent(this);
     this.children_[0] = value;
     this.childCount_++;
   }
 
   addRight(value) {
+    value.changeParent(this);
     this.children_[1] = value;
     this.childCount_++;
+  }
+
+  deleteChild(child) {
+    if (this.children_.includes(child)) {
+      this.children_[this.children_.indexOf(child)] = null;
+      child.changeParent(null);
+      this.childCount_--;
+    }
   }
 
 }

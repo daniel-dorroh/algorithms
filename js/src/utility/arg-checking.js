@@ -6,6 +6,12 @@ export const throwIfNotType = (input, type, name = 'input') => {
   }
 };
 
+export const throwIfNotInteger = (input, name = 'input') => {
+  if (!Number.isInteger(input)) {
+    throw `${name} is not an integer`;
+  }
+};
+
 export const throwIfNotArray = (input, name = 'input') => {
   if (!Array.isArray(input)) {
     throw `${name} is not an array`;
