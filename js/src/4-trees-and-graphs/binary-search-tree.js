@@ -1,5 +1,6 @@
 import { Node, throwIfNotNode } from './node';
 import { throwIfNotType } from '../utility/arg-checking';
+import { toBinarySearchTree } from './4.2-minimal-tree';
 
 export const throwIfNotBinarySearchTree = (bst, name = 'bst') => {
   if (!(bst instanceof BinarySearchTree)) {
@@ -9,8 +10,12 @@ export const throwIfNotBinarySearchTree = (bst, name = 'bst') => {
 
 export class BinarySearchTree {
 
-  constructor() {
-    this.root_ = null;
+  constructor(values = [], root = null) {
+    this.root_ = root;
+    if (values.length !== 0) {
+      this.root_ = toBinarySearchTree(
+          values.sort((f, s) => f < s ? -1 : f === s ? 0 : 1));
+    }
   }
 
   root() {
@@ -39,9 +44,12 @@ export class BinarySearchTree {
   }
 
   getPreOrderIterator(node) {
+    if (node === undefined || node === null) {
+      node = this.root();
+    }
     const getNext = function * (current) {
       if (current !== null) {
-        yield current.value();
+        yield current;
         if (current.left() !== null) {
           yield * getNext(current.left());
         }
