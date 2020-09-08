@@ -8,7 +8,6 @@ describe('findSourceArrays', () => {
   });
 
   test('finds the source array used to construct the tree', () => {
-    debugger;
     const source = [0, 5, 6, 1, 7, 9, 1, 2, 4, 10, 7, 21, 3, 3, 1, 5];
     const bst = new BinarySearchTree();
     for (const value of source) {
