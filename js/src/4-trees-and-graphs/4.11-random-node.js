@@ -1,5 +1,6 @@
 import { Node } from './node';
 import { DenseRepository } from '@dinosanjo/data-structures/dist/utility/dense-repository';
+import { throwIfNullOrUndefined } from '../utility/arg-checking';
 
 // You are implementing a binary tree class from scratch,
 // which, in addition to insert, find, and delete, has a
@@ -8,7 +9,7 @@ import { DenseRepository } from '@dinosanjo/data-structures/dist/utility/dense-r
 // chosen. Design and implement an algorithm for getRandomNode,
 // and explain how you would implement the rest of the methods.
 
-const numericCompare = (x, y) => {
+export const numericCompare = (x, y) => {
   if (x === y) {
     return 0;
   } else if (x < y) {
@@ -24,7 +25,7 @@ export class BinarySearchTree {
     this.root_ = root;
     this.repository_ = new DenseRepository();
     if (values.length !== 0) {
-      this.initialize_(values.sort(numericCompare));
+      this.root_ = this.initialize_(values.sort(numericCompare));
     }
     const largeNumber = Math.floor(Math.random() * (Math.pow(2, 32) - 1));
     this.randomSlope_ = Math.floor(Math.random() * largeNumber);
@@ -32,7 +33,30 @@ export class BinarySearchTree {
     this.randomIndex_ = 0;
   }
 
+  root() {
+    return this.root_;
+  }
+
+  getIterator(node) {
+    if (node === undefined || node === null) {
+      node = this.root();
+    }
+    const getNext = function * (current) {
+      if (current !== null) {
+        if (current.left() !== null) {
+          yield * getNext(current.left());
+        }
+        yield current;
+        if (current.right() !== null) {
+          yield * getNext(current.right());
+        }
+      }
+    };
+    return getNext(node);
+  };
+
   insert(valueNode) {
+    throwIfNullOrUndefined(valueNode, 'valueNode');
     if (this.root_ === null) {
       this.root_ = valueNode;
     } else {
@@ -43,6 +67,7 @@ export class BinarySearchTree {
   }
 
   insertValue(value) {
+    throwIfNullOrUndefined(value, 'value');
     const valueNode = new Node(value);
     return this.insert(valueNode);
   }
@@ -52,8 +77,11 @@ export class BinarySearchTree {
     return this.repository_.get(id);
   }
 
-  find(value, target = null) {
-    if (target === null) {
+  find(value, target = undefined) {
+    if (value === null || value === undefined) {
+      return null;
+    }
+    if (target === undefined) {
       target = this.root_;
     }
     if (value === target.value()) {
@@ -71,15 +99,18 @@ export class BinarySearchTree {
 
   deleteFirst(value) {
     const valueNode = this.find(value);
+    if (valueNode === null) {
+      return;
+    }
     this.deleteNode_(valueNode);
-    this.repository_.delete(valueNode.id);
+    this.repository_.remove(valueNode.id);
   }
 
   delete(value) {
     let valueNode = this.find(value);
     while (valueNode !== null) {
       this.deleteNode_(valueNode);
-      this.repository_.delete(valueNode.id);
+      this.repository_.remove(valueNode.id);
       valueNode = this.find(value);
     }
   }
@@ -111,7 +142,7 @@ export class BinarySearchTree {
   }
 
   insert_(parent, node) {
-    if (parent.value() >= node.value()) {
+    if (node.value() >= parent.value()) {
       if (parent.right() === null) {
         parent.addRight(node);
       } else {
@@ -128,14 +159,31 @@ export class BinarySearchTree {
 
   deleteNode_(node) {
     const parent = node.parent();
-    parent.deleteChild(node);
-    let replacement = node.right() !== null
-        ? node.right()
-        : node.left();
-    if (replacement !== null) {
-      replacement.changeParent(parent);
+    parent && parent.deleteChild(node);
+    let replacementNode = null;
+    const orphanNodes = [];
+    if (node.right() !== null) {
+      replacementNode = node.right();
+      parent && parent.addRight(replacementNode);
+      for (const leftNode of this.getIterator(node)) {
+        if (leftNode === node) {
+          break;
+        }
+        orphanNodes.push(leftNode);
+        leftNode.parent().deleteChild(leftNode);
+      }
+    } else if (node.left() !== null) {
+      replacementNode = node.left();
+      parent && parent.addLeft(replacementNode);
     }
-    return replacement;
+    if (parent === null) {
+      this.root_ = replacementNode;
+      replacementNode && replacementNode.changeParent(null);
+    }
+    while (orphanNodes.length !== 0) {
+      this.insert(orphanNodes.pop());
+    }
+    return replacementNode;
   }
 
 }
