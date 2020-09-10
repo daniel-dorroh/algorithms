@@ -10,12 +10,14 @@ const findPaths = (node, sum, paths, values = []) => {
   if (node === null) {
     return;
   }
-  const nextValues = [...values, node.value()];
-  if (nextValues.reduce((a, c) => a + c) === sum) {
-    paths.push(nextValues);
+  sum -= node.value();
+  values.push(node.value());
+  if (sum === 0) {
+    paths.push([...values]);
   }
-  findPaths(node.left(), sum, paths, nextValues);
-  findPaths(node.right(), sum, paths, nextValues);
+  findPaths(node.left(), sum, paths, values);
+  findPaths(node.right(), sum, paths, values);
+  values.pop();
 };
 
 export const getPathsWithSum = (root, sum) => {
