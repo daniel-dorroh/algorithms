@@ -35,18 +35,18 @@ describe('next', () => {
     n4.addLeft(l4);
     n4.addRight(n5);
     n5.addLeft(l5);
-    valueMapping[1] = l1;
-    valueMapping[2] = n1;
-    valueMapping[3] = n3;
-    valueMapping[4] = l2;
-    valueMapping[5] = root;
-    valueMapping[6] = l3;
-    valueMapping[7] = n2;
-    valueMapping[9] = n4;
-    valueMapping[8] = l4;
-    valueMapping[12] = n5;
-    valueMapping[11] = l5;
-    valueMapping[13] = null;
+    valueMapping.set(1, l1);
+    valueMapping.set(2, n1);
+    valueMapping.set(3, n3);
+    valueMapping.set(4, l2);
+    valueMapping.set(5, root);
+    valueMapping.set(6, l3);
+    valueMapping.set(7, n2);
+    valueMapping.set(9, n4);
+    valueMapping.set(8, l4);
+    valueMapping.set(12, n5);
+    valueMapping.set(11, l5);
+    valueMapping.set(13, null);
   });
 
   test.each([
@@ -62,8 +62,8 @@ describe('next', () => {
         [11, 12],
         [12, 13],
       ])('returns the next node given starting point', (start, end) => {
-    const startNode = valueMapping[start];
-    const nextNode = valueMapping[end];
+    const startNode = valueMapping.get(start);
+    const nextNode = valueMapping.get(end);
     expect(next(startNode)).toBe(nextNode);
   });
 
