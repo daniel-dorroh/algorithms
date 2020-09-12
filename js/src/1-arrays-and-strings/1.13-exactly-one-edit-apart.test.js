@@ -35,7 +35,6 @@ describe('oneEditApart', () => {
         ['woman', 'women'],
         ['dear', 'deer'],
       ])('true if inputs are one edit apart - (%s, %s)', (input1, input2) => {
-        debugger;
     expect(oneEditApart(input1, input2)).toBe(true);
   });
 
