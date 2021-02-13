@@ -44,7 +44,6 @@ describe('rearrangeLinkedList', () => {
         [[3], 3, [3]],
         [[3], 5, [3]],
       ])('rearranges linked lists according to specification', (input, k, output) => {
-        debugger;
     const head = makeLinkedList(input);
     const result = rearrangeLinkedList(head, k);
     expect(linkedListToArray(result)).toStrictEqual(output);
